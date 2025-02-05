@@ -1,0 +1,21 @@
+#EXTM3U
+#EXTINF:-1,ABN TV___852x480_3.684
+https://stream1.freetv.fun/ibn-tv-1.m3u8
+#EXTINF:-1,Business TV Ukraine___1280x720_5.226
+https://stream1.freetv.fun/zee-business-3.m3u8
+#EXTINF:-1,FOX新聞___1280x720_1.785
+https://fox-foxnewsnow-samsungus.amagi.tv/playlist720p.m3u8
+#EXTINF:-1,Hope Channel___720x576_5.510
+https://stream1.freetv.fun/hope-channel-ukraine-1.m3u8
+#EXTINF:-1,tv7 himlen___640x360_4.288
+https://stream1.freetv.fun/himlen-tv7-4.m3u8
+#EXTINF:-1,新鄉電視臺___1920x1080_5.381
+https://stream1.freetv.fun/xin-xiang-xian-dian-shi-1.m3u8
+#EXTINF:-1,時尚台FTV___800x450_2.253
+http://lb.streaming.sk/fashiontv/stream/chunklist_w1702070444.m3u8
+#EXTINF:-1,時尚台FTV___800x450_2.822
+http://80.94.54.42/fashiontv/stream/playlist.m3u8
+#EXTINF:-1,環球電視台___720x576_1.178
+http://zb.xzxwhcb.com:9999/hls/world.m3u8
+#EXTINF:-1,音樂欣賞2___1280x720_2.812
+http://61.221.215.25:8800/hls/58/index.m3u8
