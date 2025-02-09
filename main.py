@@ -34,7 +34,7 @@ if (len(sys.argv)-1) >= 2:
     
 download_video_use_time = timeout + 0.1  # 使用ffmpeg下载{download_video_time}秒直播源的视频，到解析出视频分辨率，最大允许的耗时秒数，超过的剔除，不建议在调整该值
 
-max_bitrate = 10000  # bitrate高于10000，容易卡顿，故剔除掉
+max_bitrate = 5000  # bitrate高于5000，容易卡顿，故剔除掉
 
 max_fps = 50  # fps高于50，容易卡顿，故剔除掉
 
