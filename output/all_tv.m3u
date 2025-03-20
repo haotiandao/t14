@@ -6,18 +6,10 @@ http://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL2.smil/chunklist_w10181
 #EXTINF:-1,CGTN记录___1280x720_0.840
 https://english-livetx.cgtn.com/hls/yypdjlctzb_hd.m3u8
 #EXTINF:-1,MTV___1280x720_2.812
-http://hls.volgograd1vtv.cdnvideo.ru/volgograd1vtv/volgograd1vtv.sdp/playlist.m3u8
-#EXTINF:-1,YMG未来___1920x1080_0.565
 http://l.cztvcloud.com/channels/lantian/SXyuhang3/720p.m3u8?
 #EXTINF:-1,Zhejiang TV International___1920x1080_0.719
 https://ali-m-l.cztv.com/channels/lantian/channel10/1080p.m3u8
 #EXTINF:-1,Самара___1024x576_2.540
-http://live.guberniatv.cdnvideo.ru/guberniatv/guberniatv.sdp/playlist.m3u8
-#EXTINF:-1,万源新闻综合___1920x1080_1.097
-http://live.wanyuannews.com:80/wytv/hd/live.m3u8
-#EXTINF:-1,万源新闻综合___1920x1080_1.477
-http://live.wanyuannews.com/wytv/hd/live.m3u8?zsicd
-#EXTINF:-1,万源新闻综合___1920x1080_1.498
 http://live.wanyuannews.com/wytv/hd/live.m3u8
 #EXTINF:-1,上虞1新闻综合 (720p) [Not 24/7]___1920x1080_0.695
 https://l.cztvcloud.com/channels/lantian/SXshangyu1/720p.m3u8
