@@ -89,7 +89,8 @@ def get_resolution_and_download_time(i, url):
 
         if result is not None and result.returncode == 0:
             print(f"cmd result: {result}")
-            file_size = os.path.getsize(output_file_name) / 1024
+            original_file_size = os.path.getsize(output_file_name)
+            file_size = original_file_size / 1024
 
             # 删除之前测试直播源存储的视频文件
             os.remove(output_file_name)
@@ -99,7 +100,7 @@ def get_resolution_and_download_time(i, url):
             if file_size < download_video_length:
                 print(f"{download_video_time}秒钟的视频大小没有超过{download_video_length}KB, 播放容易卡顿，故剔除掉 url: {url}")
                 get_test_url_time(start_time, 0, 0, url)
-                return None, None, None
+                return None, None, None, None
 
             output_cont = result.stdout
             cont_arr = output_cont.split("\n")
@@ -138,12 +139,12 @@ def get_resolution_and_download_time(i, url):
             # 过滤 fps 太高的直播源，容易卡顿
             if fpsInt > max_fps:
                 print(f"fps:{fpsInt}高于{max_fps}，容易卡顿，故剔除掉 url:{url}")
-                return None, None, None
+                return None, None, None, None
                 
             # 过滤 bitrate 太高的直播源，容易卡顿
             elif bitrateFloat > max_bitrate:
                 print(f"bitrate:{bitrateFloat}高于{max_bitrate}，容易卡顿，故剔除掉 url:{url}")
-                return None, None, None
+                return None, None, None, None
                 
             elif len(width_height) > 0:
                 arr = width_height.split("x")
@@ -151,11 +152,11 @@ def get_resolution_and_download_time(i, url):
                 height = arr[1]
 
                 get_time = get_test_url_time(start_time, width, height, url)
-                return width, height, get_time
+                return width, height, get_time, original_file_size
             # 没有获取到分辨率的，过滤掉
             else:
                 get_test_url_time(start_time, 0, 0, url)
-                return None, None, None
+                return None, None, None, None
 
         else:
             # 删除之前测试直播源存储的视频文件
@@ -163,7 +164,7 @@ def get_resolution_and_download_time(i, url):
                 os.remove(output_file_name)
 
             get_test_url_time(start_time, 0, 0, url)
-            return None, None, None
+            return None, None, None, None
 
     except Exception as e:
         if process is not None:
@@ -175,19 +176,24 @@ def get_resolution_and_download_time(i, url):
 
         print(f"Failed to get resolution for URL {url}: {e}")
         get_test_url_time(start_time, 0, 0, url)
-        return None, None, None
+        return None, None, None, None
 
 
 def test_stream(url, output_file, tv_name, i, total):
     print(f"test url no.:{i} total: {total}")
     try:
-        width, height, get_time = get_resolution_and_download_time(i, url)
+        width, height, get_time, file_size_1 = get_resolution_and_download_time(i, url)
+        time.sleep(5)
+        width, height, get_time, file_size_2 = get_resolution_and_download_time(i, url)
 
         print(f"get_time:{get_time} =======================================")
+        
+        if (file_size_1 == file_size_2):
+            print(f"TV Name: {tv_name} URL: {url} 视频内容重复，剔除掉")
        
         # 剔除获取不到视频分辨率的
         # 剔除下载2秒视频流，耗时超过xx秒的直播源
-        if (width is None or height is None or get_time is None):
+        elif (width is None or height is None or get_time is None):
             print(f"TV Name: {tv_name} URL: {url} 未获取到分辨率，剔除掉")
             
         elif (float(width) > max_width):
@@ -348,7 +354,7 @@ def main(playlist_file, m3u8_file_path):
 
     # 再新建一个m3u文件来存储排序后的
     new_output_file = (
-        m3u8_file_path + time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) + ".m3u"
+        m3u8_file_path + "all_tv.m3u"
     )
 
     with open(new_output_file, "w", encoding="utf-8") as f:
